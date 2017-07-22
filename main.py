@@ -13,7 +13,7 @@ def get_link():
     }
     print("?".join((AUTH_URL, urlencode(auth_data))))
 
-class ym():
+class Ym():
     API_MAN_URL = "https://api-metrika.yandex.ru/management/v1/"
     API_STAT_URL = "https://api-metrika.yandex.ru/stat/v1/"
     token = "None"
@@ -32,7 +32,7 @@ class ym():
         r = requests.get(self.API_MAN_URL + "counters", headers=headers)
         return [counter["id"] for counter in r.json()["counters"]]
 
-class counter(ym):
+class Counter(Ym):
     def __init__(self, token):
         super().__init__(token)
 
@@ -52,5 +52,5 @@ class counter(ym):
                                                                     self.get_visitors()[2]))
 
 
-yam = counter(TOKEN)
-yam.print_metrics()
+Yam = Counter(TOKEN)
+Yam.print_metrics()
